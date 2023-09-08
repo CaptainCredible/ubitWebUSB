@@ -13,13 +13,15 @@ function onReceivedValue(receivedName, receivedValue){ //this function will be c
   if(receivedName == "x"){
     circleX = receivedValue   
   } else if(receivedName == "y"){
-    circleY = data
+    circleY = receivedValue
   }
 }
 
 //the string is always 31 characters long :( . 
 function onReceivedString(receivedString){ //this function will be called every time the microbit sends serial.writeLine(text)
-  lastReceivedText = receivedString.split("#") //Here we split the string and only use the characters before the "#"  
+  let splitAtHash = receivedString.split("#") //Here we split the string and only use the characters before the "#"  
+  console.log(splitAtHash)
+  lastReceivedText = splitAtHash[0]
 }
 
 function setup() {
