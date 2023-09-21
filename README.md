@@ -1,21 +1,33 @@
 # ubitWebUSB
 
+adapted from Bill Sievers amazing project: https://github.com/bsiever/microbit-webusb
+
 Add the ubitwebusb.js to your p5.js project root directory
 don't forget to include the line <script src="ubitwebusb.js"></script> in your index.html so the browser actually reads the file ubitwebusb.js
 
 add this line in setup:
 setupuBitSerial()
 
+
+now to send data from p5js to microbit use:
+uBitWriteLine("whatever you want to send");
+or
+uBitWriteLine(58);
+
+
 add these functions in your sketch.js
+
+// to receive a string
 onReceivedString(string){
 // do something with string
 }
 
+//to receive a name + value
 onReceivedValue(name, value){
 // do something with name and value
 }
-
-to check if the microBit is connected in your code you can use: 
+ 
+to check if the microBit is connected
 if(connectedDevice != null){
 //do something
 }
