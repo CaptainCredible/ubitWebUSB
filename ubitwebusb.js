@@ -32,7 +32,6 @@ function disconnectuBit() {
 function uBitEventHandler(reason, device, data) {
   //console.log("ooh!");
   switch (reason) {
-      
     case "connected":
       if(CONSOLE_LOG) print("connected");
       connectedDevice = device;
@@ -56,11 +55,12 @@ function uBitEventHandler(reason, device, data) {
       
     case "graph-data": // we received a value
       if(CONSOLE_LOG) print(`Graph Data: ${data.data} (for ${data.graph}${data.series.length?" / series "+data.series:""})`)
-      if(typeof onReceivedValue === 'function'){
+      
+    if(typeof onReceivedValue === 'function'){
         onReceivedValue(data.graph, data.data)  
       } else {
         //console.log(data.graph + " = " + data.data)
-      }      
+      }
       break
   }
 }

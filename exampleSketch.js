@@ -9,6 +9,10 @@ let circleX = 0 // variable to store the X coordinate of our circle
 let circleY = 0 // variable to store the Y coordinate of our circle
 let lastReceivedText = "---" //variable to store incoming strings
 
+
+
+
+
 function onReceivedValue(receivedName, receivedValue){ //this function will be called every time the microbit sends serial.writeValue(name, value)
   if(receivedName == "x"){
     circleX = receivedValue   
