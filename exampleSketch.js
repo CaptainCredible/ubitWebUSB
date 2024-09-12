@@ -35,12 +35,18 @@ function setup() {
 }
 
 function draw() {
-  background("black")
-  fill("white");
+ background("black")
+ 
+ if(connectedDevice!=null){ // check if a microbit is currently connected / paired
+  fill("green");
+ } else {
+  fill("red");
+ }
+  
   //draw text
   textSize(50)
   text(lastReceivedText,width/2,350)
-  //map the incoming accelerometer values to coordinates and draw the circle
+  //map the incoming x and y values to coordinates and draw the circle
   circle(map(circleX, -2048, 2048, 0, width), map(circleY, -2048, 2048, 0, height), 100)
 }
 

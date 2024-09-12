@@ -2,9 +2,8 @@
 
 adapted from Bill Sievers amazing project: https://github.com/bsiever/microbit-webusb
 
-Add the ubitwebusb.js to your p5.js project root directory
+Add the ubitwebusb.js and the dap.imd.js to your p5.js project root directory
 don't forget to include the line <script src="ubitwebusb.js"></script> in your index.html so the browser actually reads the file ubitwebusb.js
-
 add this line in setup:
 setupuBitSerial()
 
