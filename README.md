@@ -4,9 +4,10 @@ adapted from Bill Sievers amazing project: https://github.com/bsiever/microbit-w
 
 Add the ubitwebusb.js and the to your p5.js project root directory
 don't forget to include the line <script src="ubitwebusb.js"></script> in your index.html so the browser actually reads the file ubitwebusb.js
+
+
 add this line in setup:
 setupuBitSerial()
-
 
 now to send data from p5js to microbit use:
 uBitWriteLine("whatever you want to send");
@@ -46,3 +47,6 @@ if you want to reposition the connect button, do this:
 connectButton.position(x,y)
 
 example microbit code to use with the example sketch: https://makecode.microbit.org/_XoocK4c1bJXM
+
+
+occasionally youll get the error "bad response 8 -> 17" when connecting. Just unplug and reconnect the microbit and try again. 
