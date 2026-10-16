@@ -2,8 +2,14 @@
 
 adapted from Bill Sievers amazing project: https://github.com/bsiever/microbit-webusb
 
-Add the ubitwebusb.js and the to your p5.js project root directory
-don't forget to include the line <script src="ubitwebusb.js"></script> in your index.html so the browser actually reads the file ubitwebusb.js
+Add ubitwebusb.js AND dap.umd.js to your p5.js project root directory.
+
+Both are needed: dap.umd.js is the DAPjs library that does the talking to the
+micro:bit, and ubitwebusb.js expects it to be loaded already. So put both lines
+in your index.html, in this order:
+
+    <script src="dap.umd.js"></script>
+    <script src="ubitwebusb.js"></script>
 
 
 add this line in setup:
