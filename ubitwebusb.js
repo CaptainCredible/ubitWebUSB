@@ -84,12 +84,36 @@ function uBitEventHandler(reason, device, data) {
 const MICROBIT_VENDOR_ID = 0x0d28
 const MICROBIT_PRODUCT_ID = 0x0204
 
+// DAPjs's own mutex waits by polling setTimeout(..., 1). In a hidden/minimised
+// tab the browser throttles those timers (to 1s or worse), and since the serial
+// read loop grabs the mutex constantly, writes starve and nothing gets sent.
+// This replacement is a FIFO promise queue: no timers, so throttling can't touch it.
+function makeQueueMutex() {
+    let tail = Promise.resolve()
+    let release = null
+    return {
+        lock() {
+            let releaseThis
+            const done = new Promise(res => releaseThis = res)
+            const prev = tail
+            tail = prev.then(() => done)
+            return prev.then(() => { release = releaseThis })
+        },
+        unlock() {
+            const r = release
+            release = null
+            if (r) r()
+        }
+    }
+}
+
 /*
    Open and configure a selected device and then start the read-loop
  */
 async function uBitOpenDevice(device, callback) {
     const transport = new DAPjs.WebUSB(device)
     const target = new DAPjs.DAPLink(transport)
+    target.sendMutex = makeQueueMutex()
     try {
         await target.connect()
         await target.setSerialBaudrate(115200)
